@@ -43,7 +43,7 @@ Install dependency
 mix deps.get
 ```
 
-Clean your files so that everything is compiled from scratch
+Clean your files so that everything is compiled from scratch:
 
 ```
 mix clean
@@ -53,15 +53,20 @@ Run your Elixir. E.g. for a phoenix application:
 
 ```
 clear # empty the console window, so we can copy the ouptut.
-iex -S mix phoenix.server
+
+iex -S mix
+# for the application files only (e.g. with phoenix):
+# iex -S mix phoenix.server
+# if you want to clean tests
+# iex -S mix text
 ```
 
-Manually copy (as in Cmd+a, Cmd+c, Cmd+v) the STDERR output that contains all the warnings into a file (Note to myself: there must be multiple better ways to achieve this).
+Manually copy (as in Cmd+a, Cmd+c, Cmd+v) the console output that contains all the warnings into a file (Note to myself: there must be multiple better ways to achieve this).
 
 Now run fix_warnings.
 
 ```
-mix fix_warnings --path path/to/output.log
+mix fix_warnings -f path/to/output.log
 ```
 
 Enjoy
@@ -75,4 +80,4 @@ git diff
 - There's a few edge-cases. I provided a failing test with some edge-cases. alias Foo.{Bar,Baz} and prefix variables.
 - Find a way so fix_warnings can tap into STDERR directly, so we don't have to mess with around copying console output to files.
 - Add more warnings
-
+- Refactor mix task
