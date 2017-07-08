@@ -5,11 +5,14 @@ defmodule FixWarnings.Mixfile do
     [app: :fix_warnings,
      version: "0.1.0",
      elixir: "~> 1.4",
-     description: "Automatically fixes warnings",
+     description: "A mix task that automatically fixes compiler warnings in your Elixir project",
      package: [
       licenses: "MIT",
-      maintainers: "seb",
-      links: [],
+      maintainers: ["hasclass"],
+      licenses: ["MIT"],
+      links: %{github: "https://github.com/hasclass/fix_warnings"},
+      files: ~w(lib) ++
+        ~w(LICENSE.md mix.exs README.md)
      ],
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -34,6 +37,8 @@ defmodule FixWarnings.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:ex_doc, "~> 0.16"}]
+    [
+      {:ex_doc, "~> 0.16", only: :docs},
+    ]
   end
 end
