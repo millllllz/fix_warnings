@@ -1,0 +1,11 @@
+warning: variable "unused_param" is unused
+  examples/foo.ex:9
+
+warning: variable "unused_param1" is unused
+  examples/foo.ex:13
+
+warning: variable "unused_param2" is unused
+  examples/foo.ex:13
+
+warning: unused alias Bar
+  examples/foo.ex:6

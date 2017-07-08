@@ -1,0 +1,5 @@
+warning: variable "headers" is unused
+  examples/todo.ex:12
+
+warning: unused alias Bar
+  examples/todo.ex:8
