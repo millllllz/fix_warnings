@@ -15,15 +15,14 @@ warning: variable "curr_line" is unused
   lib/foo.ex:31
 ```
 
-FixWarnings automatically fixes the trivial warnings directly in your Elixir source code. Verify the changes, using `git diff` or with the tooling of your choice.
+FixWarnings automatically fixes the trivial warnings directly in your Elixir source code. It removes unused aliases and adds a `_` prefix to unused variables with.
 
 ## Alpha Warning
 
-I extracted this from a quickly hacked together script, which worked well for me. But don't trust blindly in the patches.
+I extracted this from a quickly hacked together script, which worked well for me. But don't trust this blindly yet, verify with git diff first.
 
 Limitations:
 - You have to manually copy the log output that contains the warnings into a file
-- There's a few edge-cases that are not covered yet. Check the changes before you commit
 
 ## Guide
 

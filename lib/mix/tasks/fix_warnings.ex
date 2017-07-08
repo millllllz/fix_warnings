@@ -1,11 +1,21 @@
-require IEx
 defmodule Mix.Tasks.FixWarnings do
   use Mix.Task
 
   @shortdoc "Patches warning (and overwrites) your files"
 
   @moduledoc """
-  Patches warnings and overwrites the files
+  Automatically fixes compiler warnings in your Elixir project.
+
+      $ mix clean
+      # clear
+      # mix
+      # # Copy output to path/to/output.log
+      $ mix fix_warnings -f path/to/output.log
+
+  - The `-f` option indicates the path where you have copied the log output
+  - The `-q` or --quiet flag to surpress the [Yn] confirm prompt
+
+  See [https://github.com/hasclass/fix_warnings](hasclass/fix_warnings) for details on how to run.
   """
 
   @doc false

@@ -1,9 +1,11 @@
 defmodule FixWarnings.Mixfile do
   use Mix.Project
 
+  @version "0.1.2"
+
   def project do
     [app: :fix_warnings,
-     version: "0.1.2",
+     version: @version,
      elixir: "~> 1.4",
      description: "A mix task that automatically fixes compiler warnings in your Elixir project",
      package: [
@@ -14,6 +16,10 @@ defmodule FixWarnings.Mixfile do
       files: ~w(lib) ++
         ~w(LICENSE.md mix.exs README.md)
      ],
+    docs: [
+      source_ref: "v#{@version}",
+      main: "Mix.Tasks.FixWarnings"
+    ],
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
