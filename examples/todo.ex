@@ -12,4 +12,7 @@ defmodule Examples.AliasWithCurlyBrackets do
   def parse_headers(headers, headers1) do
     headers1
   end
+
+  def parse_params(%{"title" => title}), do: nil
+  def parse_params(%{title: title}), do: nil
 end

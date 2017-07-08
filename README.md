@@ -72,7 +72,7 @@ git diff
 
 ## TODOs (PRs welcome)
 
-- There's a few edge-cases. I provided a failing test with some edge-cases. alias Foo.{Bar,Baz} and prefix variables.
+- There might be a few edge-cases
 - Find a way so fix_warnings can tap into STDERR directly, so we don't have to mess with around copying console output to files.
 - Add more warnings
 - Refactor mix task

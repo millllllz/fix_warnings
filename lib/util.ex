@@ -13,4 +13,9 @@ defmodule FixWarnings.Util do
       _ -> nil
     end
   end
+
+  def prefix_with_underscore(line, var_name) do
+    ~r/([\s\(])(#{var_name}\W)/
+    |> Regex.replace(line, "\\g{1}_\\g{2}")
+  end
 end

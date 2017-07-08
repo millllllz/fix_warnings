@@ -3,3 +3,9 @@ warning: variable "headers" is unused
 
 warning: unused alias Bar
   examples/todo.ex:8
+
+warning: variable "title" is unused
+  examples/todo.ex:16
+
+warning: variable "title" is unused
+  examples/todo.ex:17

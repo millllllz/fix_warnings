@@ -3,7 +3,7 @@ defmodule FixWarnings.Mixfile do
 
   def project do
     [app: :fix_warnings,
-     version: "0.1.1",
+     version: "0.1.2",
      elixir: "~> 1.4",
      description: "A mix task that automatically fixes compiler warnings in your Elixir project",
      package: [

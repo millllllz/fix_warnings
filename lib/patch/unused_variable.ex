@@ -43,7 +43,7 @@ defmodule FixWarnings.Patch.UnusedVariable do
   end
 
   def patch(line, patch) do
-    String.replace(line, patch.element, "_" <> patch.element)
+    Util.prefix_with_underscore(line, patch.element)
   end
 
   defp element_name(line) do
@@ -53,29 +53,3 @@ defmodule FixWarnings.Patch.UnusedVariable do
     end
   end
 end
-
-# defmodule FixWarning.FixDefintion do
-#   defstruct [:type, :path, :data]
-# end
-
-# defmodule FixWarnings.UnusedAlias do
-#   @matcher ~r/warning: variable "(.+)\"/
-
-#   def match?(line) do
-#     is_nil(variable_name(line))
-#   end
-
-#   def variable_name(line) do
-#     case Regex.scan(@matcher, line) do
-#       [[_, variable_name]] -> variable_name
-#       _ -> nil
-#     end
-#   end
-
-#   def build(curr_line, tail) do
-#     var_name = variable_namea
-#     %FixWarning.FixDefintion{type: FixWarnings.UnusedAlias, }
-
-#     {:ok, nil, tail}
-#   end
-# end

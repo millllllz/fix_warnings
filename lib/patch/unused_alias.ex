@@ -41,8 +41,15 @@ defmodule FixWarnings.Patch.UnusedAlias do
     end
   end
 
-  def patch(_line, _patch) do
-    nil # nil value means the line is removed
+  def patch(line, patch) do
+    if String.contains?(line, "{") do
+      el = patch.element
+
+      ~r/(\W)(#{el}\W)/
+      |> Regex.replace(line, "\\g{1}")
+    else
+      nil # remove this line
+    end
   end
 
   defp alias_name(line) do

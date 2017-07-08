@@ -26,7 +26,7 @@ end
 """)
   end
 
-  test "todo" do
+  test "edge-cases" do
     changes = FixWarnings.changes("test/todo.log")
 
     assert String.trim(changes["examples/todo.ex"]) == String.trim("""
@@ -43,8 +43,31 @@ defmodule Examples.AliasWithCurlyBrackets do
   def parse_headers(_headers, headers1) do
     headers1
   end
+
+  def parse_params(%{"title" => _title}), do: nil
+  def parse_params(%{title: _title}), do: nil
 end
 """)
+  end
+
+  test "safely prefix with _" do
+    assert "(_bar)" == FixWarnings.Util.prefix_with_underscore("(bar)", "bar")
+  end
+
+  test "prefix ignores map string keys" do
+    assert "%{\"bar\" => _bar}" == FixWarnings.Util.prefix_with_underscore("%{\"bar\" => _bar}", "bar")
+  end
+
+  test "prefix ignores map atom keys" do
+    assert "%{bar: _bar}" == FixWarnings.Util.prefix_with_underscore("%{bar: _bar}", "bar")
+  end
+
+  test "safely prefix with my_bar" do
+    assert "my_bar" == FixWarnings.Util.prefix_with_underscore("my_bar", "bar")
+  end
+
+  test "safely prefix with mybar" do
+    assert "mybar" == FixWarnings.Util.prefix_with_underscore("mybar", "bar")
   end
 
 end
