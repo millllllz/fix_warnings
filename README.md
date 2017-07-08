@@ -32,7 +32,7 @@ Add `fix_warnings` to your mix.exs.
 ```elixir
 def deps do
   [
-    {:fix_warnings, "~> 0.1.0"}
+    {:fix_warnings, "~> 0.1.0", only: :dev}
   ]
 end
 ```
@@ -53,12 +53,7 @@ Run your Elixir. E.g. for a phoenix application:
 
 ```
 clear # empty the console window, so we can copy the ouptut.
-
-iex -S mix
-# for the application files only (e.g. with phoenix):
-# iex -S mix phoenix.server
-# if you want to clean tests
-# iex -S mix text
+mix
 ```
 
 Manually copy (as in Cmd+a, Cmd+c, Cmd+v) the console output that contains all the warnings into a file (Note to myself: there must be multiple better ways to achieve this).

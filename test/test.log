@@ -9,3 +9,7 @@ warning: variable "unused_param2" is unused
 
 warning: unused alias Bar
   examples/foo.ex:6
+
+warning: unused alias Bar
+  examples/file_that_does_not_exist_eg_an_external_package.ex:6
+

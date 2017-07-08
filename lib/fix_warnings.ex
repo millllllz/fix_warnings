@@ -32,6 +32,7 @@ defmodule FixWarnings do
     # IO.puts("parsing log: #{path}")
 
     changes(path)
+    |> Enum.filter(fn({path, content}) -> File.exists?(path) end)
     |> Enum.each(fn({path, content}) ->
       # IO.puts("- writing #{path}")
       File.write(path, content)
@@ -51,12 +52,16 @@ defmodule FixWarnings do
     # e.g. def foo(unused_param1, unused_param2) do
     patches = Enum.group_by(patches, fn(p) -> p.line - 1 end)
 
-    File.read!(path)
-    |> String.split("\n")
-    |> Enum.with_index
-    |> Enum.map(fn({line, no}) -> patch_line(line, patches[no]) end)
-    |> Enum.reject(&is_nil/1)
-    |> Enum.join("\n")
+    case File.read(path) do
+      {:ok, data} ->
+        data
+        |> String.split("\n")
+        |> Enum.with_index
+        |> Enum.map(fn({line, no}) -> patch_line(line, patches[no]) end)
+        |> Enum.reject(&is_nil/1)
+        |> Enum.join("\n")
+      _ -> nil
+    end
   end
 
   def patch_line(line, nil), do: line
