@@ -14,10 +14,7 @@ defmodule FixWarnings.LogReader do
   def read_from_output! do
     System.cmd("mix", ~w/clean/)
 
-    IO.puts("🧪")
-
-    {output, _exit_status} =
-      System.cmd("mix", ~w/compile --force/, stderr_to_stdout: true) |> IO.inspect(label: "cmd")
+    {output, _exit_status} = System.cmd("mix", ~w/compile --force/, stderr_to_stdout: true)
 
     output
   end
