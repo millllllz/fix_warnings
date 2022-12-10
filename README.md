@@ -61,6 +61,8 @@ Now run fix_warnings.
 
 ```
 mix fix_warnings -f path/to/output.log
+# or
+mix fix_warnings --file=path/to/output.log
 ```
 
 Enjoy
