@@ -64,3 +64,6 @@ git diff
 - Add more warnings
 - Refactor mix task
 - Does not seem to capture warnings in `.exs` files
+- Add support for `preview` flag
+  - this should be the default, so maybe add support for `force` flag?
+- Add diffing output
