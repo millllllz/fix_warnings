@@ -2,6 +2,8 @@ defmodule FixWarningsTest do
   use ExUnit.Case
   doctest FixWarnings
 
+  alias FixWarnings.Util
+
   test "basic test" do
     %{file: "test/test.log"}
     |> FixWarnings.changes()
@@ -56,26 +58,5 @@ defmodule FixWarningsTest do
                def parse_params(%{title: _title}), do: nil
              end
              """)
-  end
-
-  test "safely prefix with _" do
-    assert "(_bar)" == FixWarnings.Util.prefix_with_underscore("(bar)", "bar")
-  end
-
-  test "prefix ignores map string keys" do
-    assert "%{\"bar\" => _bar}" ==
-             FixWarnings.Util.prefix_with_underscore("%{\"bar\" => _bar}", "bar")
-  end
-
-  test "prefix ignores map atom keys" do
-    assert "%{bar: _bar}" == FixWarnings.Util.prefix_with_underscore("%{bar: _bar}", "bar")
-  end
-
-  test "safely prefix with my_bar" do
-    assert "my_bar" == FixWarnings.Util.prefix_with_underscore("my_bar", "bar")
-  end
-
-  test "safely prefix with mybar" do
-    assert "mybar" == FixWarnings.Util.prefix_with_underscore("mybar", "bar")
   end
 end
