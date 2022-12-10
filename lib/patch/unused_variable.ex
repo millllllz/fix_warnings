@@ -30,6 +30,7 @@ defmodule FixWarnings.Patch.UnusedVariable do
   end
 
   def build(curr_line, []), do: {:error}
+
   def build(curr_line, tail) do
     [file_loc | tail] = tail
 
@@ -37,6 +38,7 @@ defmodule FixWarnings.Patch.UnusedVariable do
       {path, no} ->
         fix = %UnusedVariable{path: path, line: no, element: element_name(curr_line)}
         {:ok, fix, tail}
+
       _ ->
         {:error}
     end

@@ -4,25 +4,28 @@ defmodule FixWarnings.Mixfile do
   @version "0.1.3"
 
   def project do
-    [app: :fix_warnings,
-     version: @version,
-     elixir: "~> 1.4",
-     description: "A mix task that automatically fixes compiler warnings in your Elixir project",
-     package: [
-      licenses: "MIT",
-      maintainers: ["hasclass"],
-      licenses: ["MIT"],
-      links: %{github: "https://github.com/hasclass/fix_warnings"},
-      files: ~w(lib) ++
-        ~w(LICENSE.md mix.exs README.md)
-     ],
-    docs: [
-      source_ref: "v#{@version}",
-      main: "Mix.Tasks.FixWarnings"
-    ],
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :fix_warnings,
+      version: @version,
+      elixir: "~> 1.4",
+      description: "A mix task that automatically fixes compiler warnings in your Elixir project",
+      package: [
+        licenses: "MIT",
+        maintainers: ["hasclass"],
+        licenses: ["MIT"],
+        links: %{github: "https://github.com/hasclass/fix_warnings"},
+        files:
+          ~w(lib) ++
+            ~w(LICENSE.md mix.exs README.md)
+      ],
+      docs: [
+        source_ref: "v#{@version}",
+        main: "Mix.Tasks.FixWarnings"
+      ],
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
@@ -44,7 +47,7 @@ defmodule FixWarnings.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:ex_doc, "~> 0.16", only: :dev},
+      {:ex_doc, "~> 0.16", only: :dev}
     ]
   end
 end
