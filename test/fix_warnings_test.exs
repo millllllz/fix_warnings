@@ -2,8 +2,6 @@ defmodule FixWarningsTest do
   use ExUnit.Case
   doctest FixWarnings
 
-  alias FixWarnings.Util
-
   test "basic test" do
     %{file: "test/test.log"}
     |> FixWarnings.changes()

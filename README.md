@@ -63,3 +63,4 @@ git diff
 - There might be a few edge-cases
 - Add more warnings
 - Refactor mix task
+- Does not seem to capture warnings in `.exs` files
