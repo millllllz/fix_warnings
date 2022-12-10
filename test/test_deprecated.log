@@ -1,0 +1,15 @@
+warning: variable "unused_param" is unused
+  examples/foo.ex:9
+
+warning: variable "unused_param1" is unused
+  examples/foo.ex:13
+
+warning: variable "unused_param2" is unused
+  examples/foo.ex:13
+
+warning: unused alias Bar
+  examples/foo.ex:6
+
+warning: unused alias Bar
+  examples/file_that_does_not_exist_eg_an_external_package.ex:6
+

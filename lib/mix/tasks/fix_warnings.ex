@@ -28,16 +28,6 @@ defmodule Mix.Tasks.FixWarnings do
 
     args = Map.new(args)
 
-    path = args[:file]
-
-    if is_nil(path) do
-      raise "Error: Please provide path. Example\n. mix fix_warnings -f path/to/output.log"
-    end
-
-    if !File.exists?(path) do
-      raise "Error: file #{args[:file]} does not exists. "
-    end
-
     answer =
       if args[:quiet] do
         "y"
@@ -52,7 +42,7 @@ defmodule Mix.Tasks.FixWarnings do
       end
 
     if answer == "y" do
-      FixWarnings.run(path)
+      FixWarnings.run(args)
     else
       IO.puts("Cancelled")
     end

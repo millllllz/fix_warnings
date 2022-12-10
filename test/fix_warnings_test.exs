@@ -1,12 +1,20 @@
-require IEx
-
 defmodule FixWarningsTest do
   use ExUnit.Case
   doctest FixWarnings
 
   test "basic test" do
-    changes = FixWarnings.changes("test/test.log")
+    %{file: "test/test.log"}
+    |> FixWarnings.changes()
+    |> assert_changes
+  end
 
+  test "basic test for deprecated logs style (without function references)'" do
+    %{file: "test/test_deprecated.log"}
+    |> FixWarnings.changes()
+    |> assert_changes
+  end
+
+  defp assert_changes(changes) do
     assert String.trim(changes["examples/foo.ex"]) ==
              String.trim("""
              defmodule Examples.Bar do
@@ -26,7 +34,7 @@ defmodule FixWarningsTest do
   end
 
   test "edge-cases" do
-    changes = FixWarnings.changes("test/todo.log")
+    changes = FixWarnings.changes(%{file: "test/todo.log"})
 
     assert String.trim(changes["examples/todo.ex"]) ==
              String.trim("""

@@ -18,6 +18,7 @@ defmodule FixWarnings do
   """
 
   alias FixWarnings.LogParser
+  alias FixWarnings.LogReader
   alias FixWarnings.Patch.UnusedAlias
   alias FixWarnings.Patch.UnusedVariable
 
@@ -28,10 +29,11 @@ defmodule FixWarnings do
     ]
   end
 
-  def run(path, mode \\ :preview) do
+  def run(args, mode \\ :preview) do
     # IO.puts("parsing log: #{path}")
 
-    changes(path)
+    args
+    |> changes()
     |> Enum.filter(fn {path, content} -> File.exists?(path) end)
     |> Enum.each(fn {path, content} ->
       # IO.puts("- writing #{path}")
@@ -39,11 +41,22 @@ defmodule FixWarnings do
     end)
   end
 
-  def changes(path) do
-    patches_per_file(path)
+  def changes(args) do
+    args
+    |> patches_per_file()
     |> Enum.map(fn {path, patches} -> {path, patch(path, patches)} end)
     |> Map.new()
   end
+
+  defp patches_per_file(args) do
+    args
+    |> read!()
+    |> LogParser.parse()
+    |> Enum.group_by(fn x -> x.path end)
+  end
+
+  defp read!(%{file: path}), do: LogReader.read_from_file!(path)
+  defp read!(_args), do: LogReader.read_from_output!()
 
   def patch(path, patches) do
     # IO.puts("patching source: #{path}")
@@ -74,11 +87,5 @@ defmodule FixWarnings do
       # edge-case: line can be nil, e.g. when it was removed previously
       if line, do: patch.__struct__.patch(line, patch)
     end)
-  end
-
-  defp patches_per_file(path) do
-    File.read!(path)
-    |> LogParser.parse()
-    |> Enum.group_by(fn x -> x.path end)
   end
 end
