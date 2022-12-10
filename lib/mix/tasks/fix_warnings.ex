@@ -22,20 +22,20 @@ defmodule Mix.Tasks.FixWarnings do
   def run(args) do
     {args, _, _} =
       OptionParser.parse(args,
-        aliases: [q: :quiet],
+        aliases: [f: :file, q: :quiet],
         strict: [file: :string, quiet: :boolean]
       )
 
     args = Map.new(args)
 
-    path = args[:f]
+    path = args[:file]
 
     if is_nil(path) do
       raise "Error: Please provide path. Example\n. mix fix_warnings -f path/to/output.log"
     end
 
     if !File.exists?(path) do
-      raise "Error: file #{args[:f]} does not exists. "
+      raise "Error: file #{args[:file]} does not exists. "
     end
 
     answer =
