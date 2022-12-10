@@ -29,7 +29,7 @@ defmodule FixWarnings.Patch.UnusedVariable do
     !is_nil(element_name(line))
   end
 
-  def build(curr_line, []), do: {:error}
+  def build(_curr_line, []), do: {:error}
 
   def build(curr_line, tail) do
     [file_loc | tail] = tail

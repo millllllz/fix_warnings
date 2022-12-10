@@ -29,12 +29,12 @@ defmodule FixWarnings do
     ]
   end
 
-  def run(args, mode \\ :preview) do
+  def run(args, _mode \\ :preview) do
     # IO.puts("parsing log: #{path}")
 
     args
     |> changes()
-    |> Enum.filter(fn {path, content} -> File.exists?(path) end)
+    |> Enum.filter(fn {path, _content} -> File.exists?(path) end)
     |> Enum.each(fn {path, content} ->
       # IO.puts("- writing #{path}")
       File.write(path, content)

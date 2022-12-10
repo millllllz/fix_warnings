@@ -8,7 +8,7 @@ defmodule FixWarnings.Util do
           {line_number, _} ->
             {path, line_number}
 
-          e ->
+          _e ->
             # TODO: check why it doesnt match
             nil
         end

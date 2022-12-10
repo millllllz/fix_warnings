@@ -23,7 +23,7 @@ defmodule FixWarnings.LogParser do
         d.match?(curr_line)
       end)
 
-    fixes =
+    _fixes =
       if definition do
         case definition.build(curr_line, tail) do
           {:ok, fix, tail} ->

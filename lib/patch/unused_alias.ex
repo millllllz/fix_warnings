@@ -28,7 +28,7 @@ defmodule FixWarnings.Patch.UnusedAlias do
     !is_nil(alias_name(line))
   end
 
-  def build(curr_line, []), do: {:error}
+  def build(_curr_line, []), do: {:error}
 
   def build(curr_line, tail) do
     [file_loc | tail] = tail
