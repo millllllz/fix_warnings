@@ -28,7 +28,8 @@ defmodule FixWarnings.Patch.UnusedAlias do
     !is_nil(alias_name(line))
   end
 
-  def build(curr_line, []), do: {:error}
+  def build(_curr_line, []), do: {:error}
+
   def build(curr_line, tail) do
     [file_loc | tail] = tail
 
@@ -36,6 +37,7 @@ defmodule FixWarnings.Patch.UnusedAlias do
       {path, no} ->
         fix = %UnusedAlias{path: path, line: no, element: alias_name(curr_line)}
         {:ok, fix, tail}
+
       _ ->
         {:error}
     end
@@ -48,7 +50,8 @@ defmodule FixWarnings.Patch.UnusedAlias do
       ~r/(\W)(#{el}\W)/
       |> Regex.replace(line, "\\g{1}")
     else
-      nil # remove this line
+      # remove this line
+      nil
     end
   end
 

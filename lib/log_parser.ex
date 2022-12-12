@@ -16,22 +16,25 @@ defmodule FixWarnings.LogParser do
   end
 
   defp parse_lines(fixes, []), do: fixes
+
   defp parse_lines(fixes, [curr_line | tail]) do
-    definition = Enum.find(FixWarnings.enabled_patches, fn(d) ->
-      d.match?(curr_line)
-    end)
+    definition =
+      Enum.find(FixWarnings.enabled_patches(), fn d ->
+        d.match?(curr_line)
+      end)
 
-    fixes = if definition do
-      case definition.build(curr_line, tail) do
-        {:ok, fix, tail} ->
-          parse_lines([fix | fixes], tail)
-        _ ->
-          # log: warning
-          parse_lines(fixes, tail)
+    _fixes =
+      if definition do
+        case definition.build(curr_line, tail) do
+          {:ok, fix, tail} ->
+            parse_lines([fix | fixes], tail)
+
+          _ ->
+            # log: warning
+            parse_lines(fixes, tail)
+        end
+      else
+        parse_lines(fixes, tail)
       end
-    else
-      parse_lines(fixes, tail)
-    end
   end
-
 end

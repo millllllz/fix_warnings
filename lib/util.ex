@@ -1,16 +1,20 @@
 defmodule FixWarnings.Util do
-  @source_matcher ~r/  (.*):(\d*)/
+  @source_matcher ~r/  (.*):(\d*)(?::|\z)/m
 
   def parse_source(line) do
     case Regex.scan(@source_matcher, line) do
       [[_, path, line_number]] ->
         case Integer.parse(line_number) do
-          {line_number, _} -> {path, line_number}
-          e ->
+          {line_number, _} ->
+            {path, line_number}
+
+          _e ->
             # TODO: check why it doesnt match
             nil
         end
-      _ -> nil
+
+      _ ->
+        nil
     end
   end
 

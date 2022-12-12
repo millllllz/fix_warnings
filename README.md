@@ -21,9 +21,6 @@ FixWarnings automatically fixes the trivial warnings directly in your Elixir sou
 
 I extracted this from a quickly hacked together script, which worked well for me. But don't trust this blindly yet, verify with git diff first.
 
-Limitations:
-- You have to manually copy the log output that contains the warnings into a file
-
 ## Guide
 
 Add `fix_warnings` to your mix.exs.
@@ -42,25 +39,17 @@ Install dependency
 mix deps.get
 ```
 
-Clean your files so that everything is compiled from scratch:
-
+Run fix_warnings:
 ```
-mix clean
-```
-
-Run your Elixir. E.g. for a phoenix application:
-
-```
-clear # empty the console window, so we can copy the ouptut.
-mix
+mix fix_warnings
 ```
 
-Manually copy (as in Cmd+a, Cmd+c, Cmd+v) the console output that contains all the warnings into a file (Note to myself: there must be multiple better ways to achieve this).
-
-Now run fix_warnings.
-
+Or run with explicitly captured logs:
 ```
+mix compile --force &> path/to/output.log
+
 mix fix_warnings -f path/to/output.log
+# or mix fix_warnings --file=path/to/output.log
 ```
 
 Enjoy
@@ -72,6 +61,9 @@ git diff
 ## TODOs (PRs welcome)
 
 - There might be a few edge-cases
-- Find a way so fix_warnings can tap into STDERR directly, so we don't have to mess with around copying console output to files.
 - Add more warnings
 - Refactor mix task
+- Does not seem to capture warnings in `.exs` files
+- Add support for `preview` flag
+  - this should be the default, so maybe add support for `force` flag?
+- Add diffing output

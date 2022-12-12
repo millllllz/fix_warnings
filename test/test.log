@@ -1,11 +1,12 @@
-warning: variable "unused_param" is unused
-  examples/foo.ex:9
+Compiling 1 file (.ex)
+warning: variable "unused_param" is unused  (if the variable is not meant to be used, prefix it with an underscore)
+  examples/foo.ex:9: M.f/2
 
-warning: variable "unused_param1" is unused
-  examples/foo.ex:13
+warning: variable "unused_param1" is unused  (if the variable is not meant to be used, prefix it with an underscore)
+  examples/foo.ex:13: M.f/2
 
-warning: variable "unused_param2" is unused
-  examples/foo.ex:13
+warning: variable "unused_param2" is unused  (if the variable is not meant to be used, prefix it with an underscore)
+  examples/foo.ex:13: M.f/2
 
 warning: unused alias Bar
   examples/foo.ex:6
@@ -13,3 +14,4 @@ warning: unused alias Bar
 warning: unused alias Bar
   examples/file_that_does_not_exist_eg_an_external_package.ex:6
 
+Generated fix_warnings app
